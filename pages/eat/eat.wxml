@@ -1,0 +1,18 @@
+<view class="container">
+  <view class="top-bar">
+    <view class="edit-btn" bindtap="goToEdit">⚙️ 编辑列表</view>
+  </view>
+  <view class="title">今天吃什么？</view>
+  
+  <view class="result-box {{isRolling ? 'rolling' : ''}}">
+    <text class="food-name">{{currentFood}}</text>
+  </view>
+  
+  <button class="main-btn" bindtap="startRoll">
+    {{isRolling ? '停止' : '帮我决定'}}
+  </button>
+  
+  <view class="hint" wx:if="{{!isRolling && currentFood !== '???'}}">
+    就决定是你了！🎉
+  </view>
+</view>

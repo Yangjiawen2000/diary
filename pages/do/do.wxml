@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="top-bar">
+    <view class="edit-btn" bindtap="goToEdit">⚙️ 编辑列表</view>
+  </view>
+  <view class="title">今天做什么？</view>
+  
+  <view class="card-container" bindtap="flipCard">
+    <view class="card {{isFlipped ? 'flipped' : ''}}">
+      <!-- Front of the card (Blind Box) -->
+      <view class="card-face card-front">
+        <text class="tap-hint">👆 点击抽取盲盒</text>
+      </view>
+      <!-- Back of the card (Result) -->
+      <view class="card-face card-back">
+        <text class="do-name">{{currentActivity}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <button class="main-btn" bindtap="resetCard" wx:if="{{isFlipped}}">
+    再抽一次
+  </button>
+  
+</view>

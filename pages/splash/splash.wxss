@@ -1,0 +1,77 @@
+.splash-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #fffaf0; /* Warm sunny background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.character-wrapper {
+  transform: translateY(100vh); /* Start below screen */
+  opacity: 0;
+  width: 650rpx;
+  height: 650rpx;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.character-img {
+  width: 500rpx;
+  height: 500rpx;
+  border-radius: 40rpx;
+  border: 12rpx solid #fff;
+  background-color: #fff;
+  box-shadow: 0 20rpx 40rpx rgba(255, 112, 67, 0.2);
+  transform: rotate(-3deg);
+}
+
+/* The bouncing pop up animation */
+.pop-out {
+  animation: popOutAnim 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popOutAnim {
+  0% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(-40rpx);
+    opacity: 1;
+  }
+  85% {
+    transform: translateY(10rpx);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.greeting {
+  margin-top: 40rpx;
+  opacity: 0;
+}
+
+.greeting.fade-in {
+  animation: fadeInAnim 1s ease-out forwards;
+}
+
+.greeting-text {
+  font-size: 48rpx;
+  font-weight: 900;
+  color: #ff7043;
+  letter-spacing: 4rpx;
+  text-shadow: 0 4rpx 8rpx rgba(255, 112, 67, 0.2);
+}
+
+@keyframes fadeInAnim {
+  from { opacity: 0; transform: translateY(20rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}

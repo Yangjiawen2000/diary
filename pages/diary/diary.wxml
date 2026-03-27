@@ -1,0 +1,69 @@
+<view class="diary-container">
+  
+  <view class="date-header">
+    <view class="header-main">
+      <text class="date-text">{{todayStr}}</text>
+      <view class="history-btn" bindtap="goToHistory">🕰️ 历史日记</view>
+    </view>
+    <text class="date-greeting">今天也要元气满满哦！</text>
+  </view>
+
+  <view class="card luck-card">
+    <view class="section-title">✨ 今日幸运色</view>
+    <block wx:if="{{luckyColor}}">
+      <view class="color-display">
+        <view class="color-circle" style="background-color: {{luckyColor.hex}};"></view>
+        <text class="color-name" style="color: {{luckyColor.hex}};">{{luckyColor.name}}</text>
+      </view>
+    </block>
+    <block wx:else>
+      <button class="draw-btn" bindtap="drawLuckyColor">抽取今日幸运色</button>
+    </block>
+  </view>
+
+  <view class="card summary-card">
+    <view class="section-title">🍱 今日足迹</view>
+    <view class="summary-line">
+      <text class="label">决定吃：</text>
+      <text class="value">{{todayFood || '还在纠结中...'}}</text>
+    </view>
+    <view class="summary-line">
+      <text class="label">决定做：</text>
+      <text class="value">{{todayDo || '还在发呆中...'}}</text>
+    </view>
+  </view>
+
+  <view class="card editor-card">
+    <view class="section-title">✍️ 小丸子的日记</view>
+
+    <!-- Location Tag -->
+    <view class="location-tag {{!locationName ? 'empty' : ''}}" bindtap="chooseLocationManually">
+      <text class="location-icon">📍</text>
+      <text class="location-text">{{locationName || '点击手动获取定位'}}</text>
+    </view>
+
+    <textarea 
+      class="diary-input" 
+      placeholder="写下今天发生的好玩事吧..." 
+      value="{{diaryText}}" 
+      bindinput="onInput"
+      maxlength="500"
+    ></textarea>
+
+    <!-- Photo Attachments -->
+    <view class="photos-container">
+      <block wx:for="{{photos}}" wx:key="index">
+        <view class="photo-wrapper">
+          <image src="{{item}}" mode="aspectFill" class="diary-photo"></image>
+          <view class="delete-badge" bindtap="removePhoto" data-index="{{index}}">×</view>
+        </view>
+      </block>
+      <view class="add-photo-btn" bindtap="chooseImages" wx:if="{{photos.length < 3}}">
+        <text class="plus-icon">+</text>
+      </view>
+    </view>
+
+    <button class="save-btn" bindtap="saveDiary">保存日记</button>
+  </view>
+
+</view>

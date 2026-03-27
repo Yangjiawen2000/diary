@@ -1,0 +1,17 @@
+<view class="profile-container">
+  <view class="header">
+    <image class="avatar" src="/images/char1.png" mode="aspectFill"></image>
+    <view class="greeting">今天吃得开心吗？</view>
+  </view>
+  
+  <view class="menu-list">
+    <view class="menu-item" bindtap="clearData">
+      <text class="menu-icon">🗑️</text>
+      <text class="menu-text">清除所有缓存</text>
+    </view>
+    <view class="menu-item">
+      <text class="menu-icon">ℹ️</text>
+      <text class="menu-text">关于小程序</text>
+    </view>
+  </view>
+</view>

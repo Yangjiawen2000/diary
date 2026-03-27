@@ -1,0 +1,21 @@
+<view class="container list-container">
+  <view class="header">
+    <text class="title">{{pageTitle}}</text>
+    <text class="subtitle">共 {{items.length}} 项</text>
+  </view>
+
+  <view class="input-group">
+    <input class="add-input" value="{{inputValue}}" bindinput="onInputChange" placeholder="输入新的{{placeholderText}}..." confirm-type="done" bindconfirm="addItem" />
+    <button class="add-btn" bindtap="addItem">添加</button>
+  </view>
+
+  <scroll-view class="items-list" scroll-y>
+    <view class="item" wx:for="{{items}}" wx:key="index">
+      <text class="item-text">{{item}}</text>
+      <view class="delete-btn" data-index="{{index}}" bindtap="deleteItem">×</view>
+    </view>
+    <view class="empty-hint" wx:if="{{items.length === 0}}">列表为空，快添加一些吧！</view>
+  </scroll-view>
+
+  <button class="reset-btn" bindtap="resetToDefault">恢复默认列表</button>
+</view>

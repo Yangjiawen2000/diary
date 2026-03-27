@@ -1,0 +1,9 @@
+<view class="splash-container">
+  <view class="character-wrapper {{animationClass}}">
+    <image class="character-img" src="/images/{{currentCharacter}}" mode="aspectFit"></image>
+  </view>
+  
+  <view class="greeting {{showGreeting ? 'fade-in' : ''}}">
+    <text class="greeting-text">今天也要开心哦！</text>
+  </view>
+</view>

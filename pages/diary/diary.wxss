@@ -1,0 +1,236 @@
+.diary-container {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #fffaf0; /* Warm paper color */
+  padding: calc(40rpx + env(safe-area-inset-top)) 40rpx calc(160rpx + env(safe-area-inset-bottom)) 40rpx;
+  box-sizing: border-box;
+  font-family: 'PingFang SC', 'Microsoft Yahei', sans-serif;
+}
+
+.date-header {
+  margin-bottom: 40rpx;
+}
+
+.date-text {
+  font-size: 56rpx;
+  font-weight: 900;
+  color: #ff7043;
+  display: block;
+}
+
+.date-greeting {
+  font-size: 28rpx;
+  color: #8d6e63;
+  margin-top: 10rpx;
+  display: block;
+}
+
+.card {
+  background: #fff;
+  border-radius: 30rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 10rpx 30rpx rgba(255, 112, 67, 0.08);
+  border: 4rpx solid #ffe0b2;
+}
+
+.section-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #5d4037;
+  margin-bottom: 30rpx;
+}
+
+.draw-btn {
+  background: linear-gradient(135deg, #ffa726, #ff7043) !important;
+  color: #fff;
+  border-radius: 100rpx;
+  font-weight: bold;
+  font-size: 30rpx;
+  box-shadow: 0 8rpx 20rpx rgba(255, 112, 67, 0.3);
+}
+.draw-btn:active {
+  transform: scale(0.96);
+}
+
+.color-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20rpx;
+  padding: 20rpx 0;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.color-circle {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
+}
+
+.color-name {
+  font-size: 40rpx;
+  font-weight: 900;
+  text-shadow: 0 2rpx 4rpx rgba(0,0,0,0.05);
+}
+
+.summary-line {
+  font-size: 32rpx;
+  margin-bottom: 16rpx;
+  display: flex;
+}
+
+.label {
+  color: #8d6e63;
+  width: 140rpx;
+}
+
+.value {
+  color: #e64a19;
+  font-weight: bold;
+  flex: 1;
+}
+
+.editor-card {
+  padding: 30rpx;
+}
+
+.diary-input {
+  width: 100%;
+  height: 300rpx;
+  background: #fff3e0;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  color: #4e342e;
+  line-height: 1.6;
+  margin-bottom: 30rpx;
+}
+
+.save-btn {
+  background: #8d6e63 !important;
+  color: #fff;
+  border-radius: 100rpx;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+.save-btn:active {
+  background: #5d4037 !important;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-btn {
+  background: #ffe0b2;
+  color: #d84315;
+  padding: 12rpx 24rpx;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  box-shadow: 0 4rpx 10rpx rgba(255, 112, 67, 0.1);
+}
+.history-btn:active {
+  background: #ffcc80;
+}
+
+/* Location Tag */
+.location-tag {
+  display: inline-flex;
+  align-items: center;
+  background: #e3f2fd;
+  padding: 10rpx 24rpx;
+  border-radius: 40rpx;
+  margin-bottom: 24rpx;
+  max-width: 100%;
+  box-shadow: 0 4rpx 10rpx rgba(33, 150, 243, 0.1);
+}
+.location-tag.empty {
+  background: #f5f5f5;
+  box-shadow: none;
+}
+.location-icon {
+  margin-right: 8rpx;
+  font-size: 28rpx;
+}
+.location-text {
+  font-size: 26rpx;
+  color: #1565c0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+}
+.location-tag.empty .location-text {
+  color: #9e9e9e;
+  font-weight: normal;
+}
+
+/* Photo Attachments */
+.photos-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+.photo-wrapper {
+  position: relative;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 16rpx;
+}
+.diary-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 16rpx;
+  background-color: #f5f5f5;
+  border: 2rpx solid #eee;
+}
+.delete-badge {
+  position: absolute;
+  top: -16rpx;
+  right: -16rpx;
+  width: 44rpx;
+  height: 44rpx;
+  background: #ff5252;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  z-index: 10;
+  box-shadow: 0 4rpx 8rpx rgba(0,0,0,0.2);
+}
+.delete-badge:active {
+  transform: scale(0.9);
+}
+.add-photo-btn {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 16rpx;
+  border: 4rpx dashed #d7ccc8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fafafa;
+}
+.add-photo-btn:active {
+  background: #f0f0f0;
+}
+.plus-icon {
+  font-size: 80rpx;
+  color: #bcaaa4;
+  font-weight: 200;
+  line-height: 1;
+}

@@ -1,0 +1,21 @@
+<view class="container">
+  <view class="title">Yes or No?</view>
+  <view class="subtitle">默念你的问题，点击硬币</view>
+  
+  <view class="coin-container" bindtap="flipCoin">
+    <view class="coin {{flipping ? 'flipping' : ''}} {{result === 'Yes' ? 'show-yes' : ''}} {{result === 'No' ? 'show-no' : ''}}">
+      <!-- Front (Yes) -->
+      <view class="coin-face coin-front">
+        <text class="coin-text">YES</text>
+      </view>
+      <!-- Back (No) -->
+      <view class="coin-face coin-back">
+        <text class="coin-text">NO</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="result-text" wx:if="{{result && !flipping}}">
+    {{result === 'Yes' ? '去吧，就选 Yes！ 🎉' : '算了吧，还是 No。 🙅'}}
+  </view>
+</view>

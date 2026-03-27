@@ -1,0 +1,39 @@
+<view class="history-container">
+  <view class="empty-state" wx:if="{{historyList.length === 0}}">
+    <text>还没有写过日记哦，快去记录今天的心情吧！</text>
+  </view>
+  
+  <block wx:for="{{historyList}}" wx:key="date">
+    <view class="history-card">
+      <view class="card-header">
+        <text class="card-date">{{item.date}}</text>
+        <view class="card-color" wx:if="{{item.color}}" style="background-color: {{item.color.hex}};">
+          <text style="color: #fff; text-shadow: 0 2rpx 4rpx rgba(0,0,0,0.2);">{{item.color.name}}</text>
+        </view>
+      </view>
+      
+      <view class="card-footprint" wx:if="{{item.food || item.doActivity}}">
+        <text class="tag" wx:if="{{item.food}}">🍱 {{item.food}}</text>
+        <text class="tag" wx:if="{{item.doActivity}}">🏃 {{item.doActivity}}</text>
+      </view>
+      
+      <view class="card-location" wx:if="{{item.location}}">
+        <text class="location-icon">📍</text>
+        <text class="location-text">{{item.location}}</text>
+      </view>
+
+      <view class="card-text" wx:if="{{item.text}}">
+        <text>{{item.text}}</text>
+      </view>
+      <view class="card-text empty-text" wx:else>
+        <text>这天什么也没写...</text>
+      </view>
+
+      <view class="history-photos" wx:if="{{item.photos && item.photos.length > 0}}">
+        <block wx:for="{{item.photos}}" wx:key="*this" wx:for-item="photo">
+          <image class="history-photo" src="{{photo}}" mode="aspectFill"></image>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>

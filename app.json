@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/splash/splash",
+    "pages/eat/eat",
+    "pages/do/do",
+    "pages/yesno/yesno",
+    "pages/list/list",
+    "pages/diary/diary",
+    "pages/history/history",
+    "pages/profile/profile"
+  ],
+  "lazyCodeLoading": "requiredComponents",
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "do next",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#999999",
+    "selectedColor": "#000000",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/eat/eat",
+        "text": "吃什么"
+      },
+      {
+        "pagePath": "pages/do/do",
+        "text": "做什么"
+      },
+      {
+        "pagePath": "pages/diary/diary",
+        "text": "日记"
+      },
+      {
+        "pagePath": "pages/yesno/yesno",
+        "text": "Yes/No"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于自动添加日记定位"
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

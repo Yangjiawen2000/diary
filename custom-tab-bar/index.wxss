@@ -1,0 +1,95 @@
+.tab-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 140rpx;
+  background: #ffffff;
+  display: flex;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -4rpx 30rpx rgba(0, 0, 0, 0.05);
+}
+
+.tab-bar-border {
+  background-color: rgba(0, 0, 0, 0.05);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 2rpx;
+}
+
+.tab-bar-item {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.icon-wrapper {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-icon {
+  font-size: 50rpx;
+}
+
+.tab-text {
+  font-size: 22rpx;
+  margin-top: 8rpx;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+/* 选中时的放大/上浮效果 */
+.tab-bar-item.active .icon-wrapper {
+  transform: translateY(-12rpx) scale(1.3);
+}
+
+.tab-bar-item.active .tab-text {
+  transform: translateY(-6rpx);
+}
+
+/* 中间特殊的日记按钮 */
+.special-item {
+  position: relative;
+}
+
+.special-item .icon-wrapper {
+  position: absolute;
+  top: -50rpx;
+  left: 50%;
+  margin-left: -60rpx; /* width is 120, so center it */
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffb347, #ffcc80);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10rpx 20rpx rgba(255, 152, 0, 0.3);
+  border: 8rpx solid #fff;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-sizing: border-box;
+}
+
+.special-item .tab-icon {
+  font-size: 60rpx;
+}
+
+.special-item .tab-text {
+  margin-top: 60rpx; /* Push text down to make room for absolute icon */
+}
+
+.special-item.active .icon-wrapper {
+  transform: translateY(-15rpx) scale(1.2);
+  box-shadow: 0 15rpx 30rpx rgba(255, 152, 0, 0.5);
+  background: linear-gradient(135deg, #ffa726, #ffb74d);
+}
