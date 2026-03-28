@@ -36,10 +36,19 @@
 }
 
 .section-title {
-  font-size: 34rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prompt-btn {
+  font-size: 24rpx;
+  background: #fff0f5;
+  padding: 6rpx 20rpx;
+  border-radius: 20rpx;
+  color: #ff9a9e;
   font-weight: bold;
-  color: #5d4037;
-  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 6rpx rgba(255, 183, 178, 0.2);
 }
 
 .draw-btn {

@@ -19,7 +19,23 @@ Page({
     todayDo: '',
     diaryText: '',
     locationName: '',
-    photos: []
+    photos: [],
+    selectedMoodIndex: 1, // Default to Happy
+    moods: [
+      { emoji: '🥳', label: '开薰' },
+      { emoji: '😊', label: '开心' },
+      { emoji: '😐', label: '一般' },
+      { emoji: '☹️', label: '难过' },
+      { emoji: '😡', label: '生气' }
+    ],
+    selectedWeatherIndex: 0,
+    weathers: [
+      { emoji: '☀️', name: '晴天' },
+      { emoji: '☁️', name: '阴天' },
+      { emoji: '🌧️', name: '雨天' },
+      { emoji: '❄️', name: '雪天' },
+      { emoji: '⛈️', name: '雷雨' }
+    ]
   },
 
   onLoad() {
@@ -81,6 +97,40 @@ Page({
 
   onInput(e) {
     this.setData({ diaryText: e.detail.value });
+  },
+
+  selectMood(e) {
+    const index = e.currentTarget.dataset.index;
+    this.setData({ selectedMoodIndex: index });
+    app.playClick();
+  },
+
+  selectWeather(e) {
+    const index = e.currentTarget.dataset.index;
+    this.setData({ selectedWeatherIndex: index });
+    app.playClick();
+  },
+
+  getDiaryPrompt() {
+    const prompts = [
+      "今天让你嘴角上扬的瞬间是什么？",
+      "今天尝试了什么新的事物吗？",
+      "如果今天能重来，你想改变哪一秒？",
+      "今天的哪顿饭最好吃？",
+      "今天有遇到让你感到温暖的人吗？",
+      "此时此刻的心情像什么季节？",
+      "对自己说一句辛苦啦！"
+    ];
+    const rand = prompts[Math.floor(Math.random() * prompts.length)];
+    wx.showModal({
+      title: '灵感启发',
+      content: rand,
+      confirmText: '记下了',
+      showCancel: false,
+      success: () => {
+        app.playTada();
+      }
+    });
   },
 
 
@@ -154,6 +204,8 @@ Page({
       time: timeStr,
       text: text,
       color: this.data.luckyColor,
+      mood: this.data.moods[this.data.selectedMoodIndex],
+      weather: this.data.weathers[this.data.selectedWeatherIndex],
       food: this.data.todayFood,
       doActivity: this.data.todayDo,
       location: this.data.locationName,
@@ -168,7 +220,9 @@ Page({
     this.setData({
       diaryText: '',
       locationName: '',
-      photos: []
+      photos: [],
+      selectedMoodIndex: 1,
+      selectedWeatherIndex: 0
     });
     
     app.playClick();

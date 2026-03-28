@@ -1,0 +1,37 @@
+<view class="stats-container">
+  <view class="header">
+    <text class="title">✨ 我的成长点滴 ✨</text>
+  </view>
+
+  <view class="stats-grid">
+    <view class="stat-card streak-card">
+      <text class="stat-value">{{streak}}</text>
+      <text class="stat-label">连续打卡天数</text>
+      <text class="stat-hint">棒棒哒！继续保持哦 🍬</text>
+    </view>
+
+    <view class="stat-card total-card">
+      <text class="stat-value">{{totalDiaries}}</text>
+      <text class="stat-label">日记总数</text>
+      <text class="stat-hint">每一篇都是宝贵记忆 📖</text>
+    </view>
+  </view>
+
+  <view class="mood-box card-cute shadow-soft">
+    <view class="section-title">☁️ 心情天气预报</view>
+    <view class="mood-list">
+      <view class="mood-stat-item" wx:for="{{moodStats}}" wx:key="emoji">
+        <text class="mood-emoji">{{item.emoji}}</text>
+        <view class="mood-bar-container">
+          <view class="mood-bar" style="width: {{item.percent}}%;"></view>
+        </view>
+        <text class="mood-count">{{item.count}}次</text>
+      </view>
+    </view>
+    <view class="empty-hint" wx:if="{{moodStats.length === 0}}">
+      还没写过日记呢，快去记一笔吧 (´･ω･`)
+    </view>
+  </view>
+
+  <view class="back-btn btn-bouncy" bindtap="goBack">返回我的</view>
+</view>

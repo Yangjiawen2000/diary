@@ -1,0 +1,128 @@
+.stats-container {
+  min-height: 100vh;
+  background-color: #fffaf0;
+  padding: calc(40rpx + env(safe-area-inset-top)) 40rpx calc(40rpx + env(safe-area-inset-bottom)) 40rpx;
+  box-sizing: border-box;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60rpx;
+}
+
+.title {
+  font-size: 44rpx;
+  font-weight: 900;
+  color: #ff9a9e;
+  text-shadow: 0 4rpx 10rpx rgba(255, 154, 158, 0.2);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30rpx;
+  margin-bottom: 40rpx;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 40rpx;
+  padding: 40rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 16rpx 40rpx rgba(255, 183, 178, 0.3);
+  border: 6rpx dashed #ffd1dc;
+}
+
+.stat-value {
+  font-size: 60rpx;
+  font-weight: 900;
+  color: #ff9a9e;
+  margin-bottom: 10rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #c2998d;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.stat-hint {
+  font-size: 20rpx;
+  color: #ffb7b2;
+}
+
+.mood-box {
+  background: #fff;
+  padding: 40rpx;
+  margin-top: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 900;
+  color: #ff9a9e;
+  margin-bottom: 40rpx;
+  border-bottom: 2rpx dashed #ffcc80;
+  padding-bottom: 16rpx;
+}
+
+.mood-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.mood-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.mood-emoji {
+  font-size: 40rpx;
+  width: 50rpx;
+}
+
+.mood-bar-container {
+  flex: 1;
+  height: 24rpx;
+  background: #fff0f5;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.mood-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+  border-radius: 12rpx;
+  transition: width 1s ease-out;
+}
+
+.mood-count {
+  font-size: 24rpx;
+  color: #c2998d;
+  font-weight: bold;
+  width: 60rpx;
+  text-align: right;
+}
+
+.empty-hint {
+  text-align: center;
+  color: #c2998d;
+  font-style: italic;
+  padding: 40rpx 0;
+}
+
+.back-btn {
+  margin-top: 80rpx;
+  background: #ff9a9e;
+  color: #fff;
+  text-align: center;
+  padding: 24rpx;
+  border-radius: 100rpx;
+  font-weight: 900;
+  box-shadow: 0 10rpx 20rpx rgba(255, 154, 158, 0.4);
+}

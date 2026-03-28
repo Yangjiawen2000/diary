@@ -36,6 +36,10 @@
           <text class="card-date">{{item.date}}</text>
           <text class="card-time" wx:if="{{item.time}}">{{item.time}}</text>
         </view>
+        <view class="status-box">
+          <text class="card-mood" wx:if="{{item.mood}}">{{item.mood.emoji}}</text>
+          <text class="card-weather" wx:if="{{item.weather}}">{{item.weather.emoji}}</text>
+        </view>
         <view class="card-color" wx:if="{{item.color}}" style="background-color: {{item.color.hex}};">
           <text style="color: #fff; text-shadow: 0 2rpx 4rpx rgba(0,0,0,0.2);">{{item.color.name}}</text>
         </view>

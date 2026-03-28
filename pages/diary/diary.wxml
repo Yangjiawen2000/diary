@@ -34,7 +34,37 @@
   </view>
 
   <view class="card editor-card">
-    <view class="section-title">✍️ 小丸子的日记</view>
+    <view class="section-title">
+      <text>✍️ 小丸子的日记</text>
+      <text class="prompt-btn" bindtap="getDiaryPrompt">✨ 灵感</text>
+    </view>
+
+    <!-- Mood Selector -->
+    <view class="mood-selector">
+      <view 
+        wx:for="{{moods}}" 
+        wx:key="index" 
+        class="mood-item {{selectedMoodIndex === index ? 'active' : ''}}"
+        bindtap="selectMood"
+        data-index="{{index}}"
+      >
+        <text class="mood-emoji">{{item.emoji}}</text>
+        <text class="mood-label">{{item.label}}</text>
+      </view>
+    </view>
+
+    <!-- Weather Selector -->
+    <view class="weather-selector">
+      <view 
+        wx:for="{{weathers}}" 
+        wx:key="index" 
+        class="weather-item {{selectedWeatherIndex === index ? 'active' : ''}}"
+        bindtap="selectWeather"
+        data-index="{{index}}"
+      >
+        <text class="weather-emoji">{{item.emoji}}</text>
+      </view>
+    </view>
 
     <!-- Location Tag -->
     <view class="location-tag {{!locationName ? 'empty' : ''}}" bindtap="chooseLocationManually">

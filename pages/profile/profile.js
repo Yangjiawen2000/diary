@@ -7,6 +7,11 @@ Page({
     }
   },
 
+  goToStats() {
+    app.playClick();
+    wx.navigateTo({ url: '/pages/stats/stats' });
+  },
+
   clearData() {
     app.playClick();
     wx.showModal({

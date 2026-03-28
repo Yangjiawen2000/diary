@@ -173,6 +173,18 @@
   font-weight: bold;
 }
 
+.status-box {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-left: auto;
+  margin-right: 20rpx;
+}
+
+.card-mood, .card-weather {
+  font-size: 40rpx;
+}
+
 .card-color {
   padding: 8rpx 20rpx;
   border-radius: 40rpx;
