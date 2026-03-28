@@ -212,11 +212,9 @@ Page({
 
   showVoiceChoice(path) {
     wx.showActionSheet({
-      itemList: ['转为文字', '直接使用语音', '重录'],
+      itemList: ['确定使用这段语音', '重新录制'],
       success: (res) => {
-        if (res.tapIndex === 0) {
-          this.transcribeVoice(path);
-        } else if (res.tapIndex === 2) {
+        if (res.tapIndex === 1) {
           this.clearTempAudio();
           this.toggleRecording();
         }
@@ -224,19 +222,6 @@ Page({
     });
   },
 
-  transcribeVoice(path) {
-    wx.showLoading({ title: '正在转文字...' });
-    
-    // Simulate speech-to-text as actual API requires plugin/backend
-    // In real scenario, would use wx.serviceMarket.vicatools or similar
-    setTimeout(() => {
-      wx.hideLoading();
-      this.setData({
-        diaryText: this.data.diaryText + (this.data.diaryText ? '\n' : '') + '[语音识别内容正在开发中...]'
-      });
-      wx.showToast({ title: '转文字成功 (模拟)', icon: 'success' });
-    }, 1500);
-  },
 
   playTempAudio() {
     if (this.data.isAudioPlaying) {
