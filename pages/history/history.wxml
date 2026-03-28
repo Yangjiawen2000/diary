@@ -1,12 +1,41 @@
 <view class="history-container">
+  
+  <view class="calendar-module">
+    <view class="cal-header">
+      <view class="cal-arrow" bindtap="prevMonth">❮</view>
+      <text class="cal-title">{{currYear}}年 {{currMonth}}月</text>
+      <view class="cal-arrow" bindtap="nextMonth">❯</view>
+    </view>
+    <view class="cal-weekdays">
+      <text class="cal-wd">日</text><text class="cal-wd">一</text><text class="cal-wd">二</text><text class="cal-wd">三</text><text class="cal-wd">四</text><text class="cal-wd">五</text><text class="cal-wd">六</text>
+    </view>
+    <view class="cal-grid">
+      <view class="cal-cell {{item.type !== 'current' ? 'fade' : ''}} {{item.isSelected ? 'selected' : ''}}" 
+            wx:for="{{calendarDays}}" wx:key="dateStr"
+            bindtap="selectDate" data-date="{{item.dateStr}}" data-type="{{item.type}}">
+        <text class="cal-day">{{item.day}}</text>
+        <view class="cal-dot" wx:if="{{item.hasDiary}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Filter hint -->
+  <view class="filter-hint" wx:if="{{selectedDateStr}}">
+    <text>正在查看：{{selectedDateStr}}</text>
+    <text class="clear-filter" bindtap="selectDate" data-date="{{selectedDateStr}}" data-type="current">取消</text>
+  </view>
+
   <view class="empty-state" wx:if="{{historyList.length === 0}}">
-    <text>还没有写过日记哦，快去记录今天的心情吧！</text>
+    <text>空空的耶...快去主页写下第一篇日记吧 ( ˶ˆ꒳ˆ˵ )</text>
   </view>
   
   <block wx:for="{{historyList}}" wx:key="date">
     <view class="history-card">
       <view class="card-header">
-        <text class="card-date">{{item.date}}</text>
+        <view class="date-time-box">
+          <text class="card-date">{{item.date}}</text>
+          <text class="card-time" wx:if="{{item.time}}">{{item.time}}</text>
+        </view>
         <view class="card-color" wx:if="{{item.color}}" style="background-color: {{item.color.hex}};">
           <text style="color: #fff; text-shadow: 0 2rpx 4rpx rgba(0,0,0,0.2);">{{item.color.name}}</text>
         </view>
@@ -26,7 +55,7 @@
         <text>{{item.text}}</text>
       </view>
       <view class="card-text empty-text" wx:else>
-        <text>这天什么也没写...</text>
+        <text>呜呜...今天交了白卷 (╥ω╥)</text>
       </view>
 
       <view class="history-photos" wx:if="{{item.photos && item.photos.length > 0}}">

@@ -17,7 +17,7 @@
       </view>
     </block>
     <block wx:else>
-      <button class="draw-btn" bindtap="drawLuckyColor">抽取今日幸运色</button>
+      <button class="draw-btn" bindtap="drawLuckyColor">✨ 点我召唤幸运色 ✨</button>
     </block>
   </view>
 
@@ -25,11 +25,11 @@
     <view class="section-title">🍱 今日足迹</view>
     <view class="summary-line">
       <text class="label">决定吃：</text>
-      <text class="value">{{todayFood || '还在纠结中...'}}</text>
+      <text class="value">{{todayFood || '还在发呆中 (´･_･`)'}}</text>
     </view>
     <view class="summary-line">
       <text class="label">决定做：</text>
-      <text class="value">{{todayDo || '还在发呆中...'}}</text>
+      <text class="value">{{todayDo || '没有头绪呢 (˘･_･˘)'}}</text>
     </view>
   </view>
 
@@ -44,7 +44,7 @@
 
     <textarea 
       class="diary-input" 
-      placeholder="写下今天发生的好玩事吧..." 
+      placeholder="今天有什么开心的事呀？偷偷告诉我吧 ☁️" 
       value="{{diaryText}}" 
       bindinput="onInput"
       maxlength="500"

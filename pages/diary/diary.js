@@ -21,9 +21,6 @@ Page({
     locationName: '',
     photos: []
   },
-  
-  isDiaryLoaded: false,
-  lastLoadedDate: '',
 
   onLoad() {
     this.refreshDate();
@@ -32,12 +29,6 @@ Page({
   onShow() {
     this.refreshDate();
     this.loadCrossPageData();
-    
-    if (!this.isDiaryLoaded || this.lastLoadedDate !== this.dateKey) {
-      this.loadSavedDiary();
-      this.isDiaryLoaded = true;
-      this.lastLoadedDate = this.dateKey;
-    }
     
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ selected: 2 });
@@ -65,24 +56,6 @@ Page({
 
     const doData = wx.getStorageSync('today_do');
     this.setData({ todayDo: (doData && doData.date === this.dateKey) ? doData.name : '' });
-  },
-
-  loadSavedDiary() {
-    const diaries = wx.getStorageSync('diaries') || {};
-    const todayDiary = diaries[this.dateKey];
-    if (todayDiary) {
-      this.setData({
-        diaryText: typeof todayDiary === 'string' ? todayDiary : (todayDiary.text || ''),
-        locationName: todayDiary.location || '',
-        photos: todayDiary.photos || []
-      });
-    } else {
-      this.setData({
-        diaryText: '',
-        locationName: '',
-        photos: []
-      });
-    }
   },
 
   drawLuckyColor() {
@@ -165,9 +138,20 @@ Page({
 
   saveDiary() {
     const text = this.data.diaryText.trim();
-    const diaries = wx.getStorageSync('diaries') || {};
+    if (!text && !this.data.locationName && this.data.photos.length === 0) {
+      wx.showToast({ title: '写点什么吧', icon: 'none' });
+      return;
+    }
+
+    const diaryList = wx.getStorageSync('diary_list') || [];
     
-    diaries[this.dateKey] = {
+    const d = new Date();
+    const timeStr = `${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}`;
+
+    const newEntry = {
+      id: Date.now() + '_' + Math.floor(Math.random() * 1000),
+      date: this.data.todayStr,
+      time: timeStr,
       text: text,
       color: this.data.luckyColor,
       food: this.data.todayFood,
@@ -177,11 +161,19 @@ Page({
       timestamp: Date.now()
     };
     
-    wx.setStorageSync('diaries', diaries);
+    diaryList.unshift(newEntry);
+    wx.setStorageSync('diary_list', diaryList);
+    
+    // Clear editor after posting
+    this.setData({
+      diaryText: '',
+      locationName: '',
+      photos: []
+    });
     
     app.playClick();
     wx.showToast({
-      title: '日记已保存',
+      title: '发布成功',
       icon: 'success'
     });
   },

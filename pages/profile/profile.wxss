@@ -26,15 +26,16 @@
 
 .greeting {
   font-size: 36rpx;
-  font-weight: bold;
-  color: #5d4037;
+  font-weight: 900;
+  color: #ff9a9e;
 }
 
 .menu-list {
   background: #fff;
-  border-radius: 30rpx;
+  border-radius: 40rpx;
   padding: 10rpx 0;
-  box-shadow: 0 8rpx 24rpx rgba(141, 110, 99, 0.08);
+  box-shadow: 0 16rpx 40rpx rgba(255, 183, 178, 0.3);
+  border: 6rpx dashed #ffd1dc;
 }
 
 .menu-item {
@@ -59,5 +60,6 @@
 
 .menu-text {
   font-size: 32rpx;
-  color: #4e342e;
+  color: #c2998d;
+  font-weight: bold;
 }

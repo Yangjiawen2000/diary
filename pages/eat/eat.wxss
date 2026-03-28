@@ -4,10 +4,11 @@
 
 .title {
   font-size: 56rpx;
-  font-weight: 800;
-  color: #d81b60;
+  font-weight: 900;
+  color: #ff9a9e;
   margin-bottom: 80rpx;
   letter-spacing: 4rpx;
+  text-shadow: 0 4rpx 0 #ffd1dc;
 }
 
 .result-box {
@@ -18,16 +19,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 30rpx 60rpx rgba(216, 27, 96, 0.15);
+  box-shadow: 0 16rpx 40rpx rgba(255, 183, 178, 0.4);
   margin-bottom: 80rpx;
   transition: all 0.1s;
-  border: 8rpx solid #f8bbd0;
+  border: 8rpx dashed #ffd1dc;
 }
 
 .food-name {
   font-size: 72rpx;
   font-weight: 900;
-  color: #c2185b;
+  color: #ff9a9e;
   text-align: center;
   padding: 0 40rpx;
 }
@@ -35,16 +36,18 @@
 .rolling {
   transform: scale(0.95);
   opacity: 0.8;
-  box-shadow: 0 10rpx 20rpx rgba(216, 27, 96, 0.05);
+  box-shadow: 0 10rpx 20rpx rgba(255, 154, 158, 0.05);
 }
 
 .main-btn {
-  background: linear-gradient(135deg, #f06292, #d81b60) !important;
-  box-shadow: 0 16rpx 32rpx rgba(216, 27, 96, 0.3) !important;
+  background: linear-gradient(135deg, #ffc3a0, #ffb199) !important;
+  box-shadow: 0 16rpx 32rpx rgba(255, 177, 153, 0.4) !important;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
 .main-btn:active {
-  background: linear-gradient(135deg, #e91e63, #c2185b) !important;
+  background: linear-gradient(135deg, #ffb199, #ff9a9e) !important;
+  transform: scale(0.9) skewX(2deg) !important;
 }
 
 .hint {

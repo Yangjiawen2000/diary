@@ -4,10 +4,11 @@
 
 .title {
   font-size: 56rpx;
-  font-weight: 800;
-  color: #1976d2;
+  font-weight: 900;
+  color: #81d4fa;
   margin-bottom: 80rpx;
   letter-spacing: 4rpx;
+  text-shadow: 0 4rpx 0 #e1f5fe;
 }
 
 .card-container {
@@ -44,8 +45,8 @@
 }
 
 .card-front {
-  background: linear-gradient(135deg, #64b5f6, #1976d2);
-  border: 8rpx solid #bbdefb;
+  background: linear-gradient(135deg, #b3e5fc, #81d4fa);
+  border: 8rpx dashed #e1f5fe;
 }
 
 .tap-hint {
@@ -57,7 +58,7 @@
 
 .card-back {
   background: #fff;
-  border: 8rpx solid #bbdefb;
+  border: 8rpx dashed #b3e5fc;
   transform: rotateY(180deg);
   padding: 40rpx;
   flex-direction: column;
@@ -66,20 +67,22 @@
 .do-name {
   font-size: 56rpx;
   font-weight: 900;
-  color: #0d47a1;
+  color: #4fc3f7;
   text-align: center;
   line-height: 1.4;
 }
 
 .main-btn {
-  background: linear-gradient(135deg, #42a5f5, #1565c0) !important;
-  box-shadow: 0 16rpx 32rpx rgba(25, 118, 210, 0.3) !important;
+  background: linear-gradient(135deg, #81d4fa, #4fc3f7) !important;
+  box-shadow: 0 16rpx 32rpx rgba(129, 212, 250, 0.4) !important;
   opacity: 0;
   animation: fadeInBtn 0.5s forwards 0.3s;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
 .main-btn:active {
-  background: linear-gradient(135deg, #1e88e5, #0d47a1) !important;
+  background: linear-gradient(135deg, #4fc3f7, #29b6f6) !important;
+  transform: scale(0.9) skewX(2deg) !important;
 }
 
 @keyframes fadeInBtn {

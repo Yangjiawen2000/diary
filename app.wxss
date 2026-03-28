@@ -7,7 +7,32 @@ page {
   display: flex;
   flex-direction: column;
 }
+/**app.wxss**/
+page {
+  background-color: #fffaf0;
+  font-family: 'PingFang SC', 'Microsoft Yahei', sans-serif;
+  color: #c2998d;
+}
 
+/* Base cute bouncy button */
+.btn-bouncy {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.btn-bouncy:active {
+  transform: scale(0.9) skewX(2deg) !important;
+}
+
+/* Soft shadows */
+.shadow-soft {
+  box-shadow: 0 16rpx 40rpx rgba(255, 183, 178, 0.3) !important;
+}
+
+/* Cute cards */
+.card-cute {
+  background: #fff;
+  border-radius: 40rpx !important;
+  border: 6rpx dashed #ffd1dc !important;
+}
 .container {
   flex: 1;
   display: flex;

@@ -14,24 +14,25 @@
 .date-text {
   font-size: 56rpx;
   font-weight: 900;
-  color: #ff7043;
+  color: #ff9a9e;
+  text-shadow: 0 4rpx 0 #ffd1dc;
   display: block;
 }
 
 .date-greeting {
   font-size: 28rpx;
-  color: #8d6e63;
+  color: #c2998d;
   margin-top: 10rpx;
   display: block;
 }
 
 .card {
   background: #fff;
-  border-radius: 30rpx;
+  border-radius: 40rpx;
   padding: 40rpx;
   margin-bottom: 30rpx;
-  box-shadow: 0 10rpx 30rpx rgba(255, 112, 67, 0.08);
-  border: 4rpx solid #ffe0b2;
+  box-shadow: 0 16rpx 40rpx rgba(255, 183, 178, 0.3);
+  border: 4rpx dashed #ffd1dc;
 }
 
 .section-title {
@@ -42,15 +43,16 @@
 }
 
 .draw-btn {
-  background: linear-gradient(135deg, #ffa726, #ff7043) !important;
+  background: linear-gradient(135deg, #ffc3a0, #ffb199) !important;
   color: #fff;
   border-radius: 100rpx;
   font-weight: bold;
   font-size: 30rpx;
-  box-shadow: 0 8rpx 20rpx rgba(255, 112, 67, 0.3);
+  box-shadow: 0 8rpx 20rpx rgba(255, 177, 153, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .draw-btn:active {
-  transform: scale(0.96);
+  transform: scale(0.9) skewX(2deg);
 }
 
 .color-display {
@@ -82,12 +84,12 @@
 }
 
 .label {
-  color: #8d6e63;
+  color: #c2998d;
   width: 140rpx;
 }
 
 .value {
-  color: #e64a19;
+  color: #ff9a9e;
   font-weight: bold;
   flex: 1;
 }
@@ -99,25 +101,27 @@
 .diary-input {
   width: 100%;
   height: 300rpx;
-  background: #fff3e0;
-  border-radius: 20rpx;
-  padding: 20rpx;
+  background: #fff0f5;
+  border-radius: 30rpx;
+  padding: 24rpx;
   box-sizing: border-box;
   font-size: 30rpx;
-  color: #4e342e;
+  color: #c2998d;
   line-height: 1.6;
   margin-bottom: 30rpx;
 }
 
 .save-btn {
-  background: #8d6e63 !important;
+  background: #ffb7b2 !important;
   color: #fff;
   border-radius: 100rpx;
   font-weight: bold;
   font-size: 30rpx;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .save-btn:active {
-  background: #5d4037 !important;
+  background: #ff9a9e !important;
+  transform: scale(0.9) skewX(2deg);
 }
 
 @keyframes popIn {

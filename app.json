@@ -12,15 +12,15 @@
   "lazyCodeLoading": "requiredComponents",
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "do next",
+    "navigationBarBackgroundColor": "#fff0f5",
+    "navigationBarTitleText": "CMZの日记本",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "custom": true,
-    "color": "#999999",
-    "selectedColor": "#000000",
-    "backgroundColor": "#ffffff",
+    "color": "#c2998d",
+    "selectedColor": "#ff9a9e",
+    "backgroundColor": "#fff0f5",
     "list": [
       {
         "pagePath": "pages/eat/eat",
