@@ -65,8 +65,6 @@ Page({
         tempAudioPath: tempFilePath,
         audioDuration: Math.round(duration / 1000)
       });
-      
-      this.showVoiceChoice(tempFilePath);
     });
     
     rm.onError((res) => {
@@ -210,17 +208,6 @@ Page({
     }
   },
 
-  showVoiceChoice(path) {
-    wx.showActionSheet({
-      itemList: ['确定使用这段语音', '重新录制'],
-      success: (res) => {
-        if (res.tapIndex === 1) {
-          this.clearTempAudio();
-          this.toggleRecording();
-        }
-      }
-    });
-  },
 
 
   playTempAudio() {
