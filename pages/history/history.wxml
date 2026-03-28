@@ -62,6 +62,13 @@
         <text>呜呜...今天交了白卷 (╥ω╥)</text>
       </view>
 
+      <view class="history-audio" wx:if="{{item.voicePath}}" bindtap="playHistoryAudio" data-path="{{item.voicePath}}" data-id="{{item.id}}">
+        <view class="audio-btn">
+          <text class="play-icon">{{playingAudioId === item.id ? '⏸️' : '▶️'}}</text>
+        </view>
+        <text class="audio-info">语音日记 · {{item.voiceDuration}}s</text>
+      </view>
+
       <view class="history-photos" wx:if="{{item.photos && item.photos.length > 0}}">
         <block wx:for="{{item.photos}}" wx:key="*this" wx:for-item="photo">
           <image class="history-photo" src="{{photo}}" mode="aspectFill"></image>

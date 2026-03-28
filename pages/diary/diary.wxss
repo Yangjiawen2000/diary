@@ -209,6 +209,82 @@
   background-color: #f5f5f5;
   border: 2rpx solid #eee;
 }
+
+/* Voice Styles */
+.voice-section {
+  padding: 20rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2rpx dashed #fff0f5;
+  margin-bottom: 20rpx;
+}
+
+.record-btn-container {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.record-btn {
+  width: 80rpx;
+  height: 80rpx;
+  background: #fff0f5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 10rpx rgba(255, 183, 178, 0.3);
+  transition: all 0.2s ease;
+}
+
+.record-btn.recording {
+  background: #ff9a9e;
+  transform: scale(1.1);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 154, 158, 0.4); }
+  70% { box-shadow: 0 0 0 20rpx rgba(255, 154, 158, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 154, 158, 0); }
+}
+
+.mic-icon {
+  font-size: 40rpx;
+}
+
+.record-hint {
+  font-size: 24rpx;
+  color: #ff9a9e;
+  font-weight: bold;
+}
+
+.audio-preview {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.audio-player {
+  background: #fff0f5;
+  padding: 10rpx 30rpx;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.audio-duration {
+  font-size: 24rpx;
+  color: #c2998d;
+}
+
+.audio-delete {
+  color: #ffb7b2;
+  font-size: 40rpx;
+  padding: 10rpx;
+}
 .delete-badge {
   position: absolute;
   top: -16rpx;

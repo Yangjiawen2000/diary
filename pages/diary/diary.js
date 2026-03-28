@@ -35,11 +35,53 @@ Page({
       { emoji: '🌧️', name: '雨天' },
       { emoji: '❄️', name: '雪天' },
       { emoji: '⛈️', name: '雷雨' }
-    ]
+    ],
+    isRecording: false,
+    tempAudioPath: '',
+    audioDuration: 0,
+    isAudioPlaying: false
   },
 
   onLoad() {
     this.refreshDate();
+    this.initRecorder();
+    this.initAudioPlayer();
+  },
+
+  initRecorder() {
+    const rm = wx.getRecorderManager();
+    this.recorderManager = rm;
+    
+    rm.onStart(() => {
+      console.log('recording start');
+      this.setData({ isRecording: true });
+    });
+    
+    rm.onStop((res) => {
+      console.log('recording stop', res);
+      const { tempFilePath, duration } = res;
+      this.setData({ 
+        isRecording: false,
+        tempAudioPath: tempFilePath,
+        audioDuration: Math.round(duration / 1000)
+      });
+      
+      this.showVoiceChoice(tempFilePath);
+    });
+    
+    rm.onError((res) => {
+      console.error('recording error', res);
+      wx.showToast({ title: '录音失败', icon: 'none' });
+      this.setData({ isRecording: false });
+    });
+  },
+
+  initAudioPlayer() {
+    this.innerAudioContext = wx.createInnerAudioContext();
+    this.innerAudioContext.onPlay(() => this.setData({ isAudioPlaying: true }));
+    this.innerAudioContext.onPause(() => this.setData({ isAudioPlaying: false }));
+    this.innerAudioContext.onStop(() => this.setData({ isAudioPlaying: false }));
+    this.innerAudioContext.onEnded(() => this.setData({ isAudioPlaying: false }));
   },
 
   onShow() {
@@ -48,6 +90,12 @@ Page({
     
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ selected: 2 });
+    }
+  },
+
+  onUnload() {
+    if (this.innerAudioContext) {
+      this.innerAudioContext.destroy();
     }
   },
 
@@ -133,6 +181,80 @@ Page({
     });
   },
 
+  toggleRecording() {
+    if (this.data.isRecording) {
+      this.recorderManager.stop();
+    } else {
+      wx.authorize({
+        scope: 'scope.record',
+        success: () => {
+          this.recorderManager.start({
+            duration: 60000,
+            sampleRate: 16000,
+            numberOfChannels: 1,
+            encodeBitRate: 96000,
+            format: 'mp3'
+          });
+        },
+        fail: () => {
+          wx.showModal({
+            title: '授权提示',
+            content: '需要麦克风权限才能录音哦',
+            confirmText: '去设置',
+            success: (res) => {
+              if (res.confirm) wx.openSetting();
+            }
+          });
+        }
+      });
+    }
+  },
+
+  showVoiceChoice(path) {
+    wx.showActionSheet({
+      itemList: ['转为文字', '直接使用语音', '重录'],
+      success: (res) => {
+        if (res.tapIndex === 0) {
+          this.transcribeVoice(path);
+        } else if (res.tapIndex === 2) {
+          this.clearTempAudio();
+          this.toggleRecording();
+        }
+      }
+    });
+  },
+
+  transcribeVoice(path) {
+    wx.showLoading({ title: '正在转文字...' });
+    
+    // Simulate speech-to-text as actual API requires plugin/backend
+    // In real scenario, would use wx.serviceMarket.vicatools or similar
+    setTimeout(() => {
+      wx.hideLoading();
+      this.setData({
+        diaryText: this.data.diaryText + (this.data.diaryText ? '\n' : '') + '[语音识别内容正在开发中...]'
+      });
+      wx.showToast({ title: '转文字成功 (模拟)', icon: 'success' });
+    }, 1500);
+  },
+
+  playTempAudio() {
+    if (this.data.isAudioPlaying) {
+      this.innerAudioContext.pause();
+    } else {
+      this.innerAudioContext.src = this.data.tempAudioPath;
+      this.innerAudioContext.play();
+    }
+  },
+
+  clearTempAudio() {
+    this.setData({
+      tempAudioPath: '',
+      audioDuration: 0,
+      isAudioPlaying: false
+    });
+  },
+
 
   chooseLocationManually() {
     wx.chooseLocation({
@@ -210,8 +332,24 @@ Page({
       doActivity: this.data.todayDo,
       location: this.data.locationName,
       photos: this.data.photos,
+      voicePath: '',
+      voiceDuration: 0,
       timestamp: Date.now()
     };
+
+    // Save Voice Memo permanent
+    if (this.data.tempAudioPath) {
+      const fs = wx.getFileSystemManager();
+      const ext = 'mp3';
+      const newPath = `${wx.env.USER_DATA_PATH}/${Date.now()}_voice.${ext}`;
+      try {
+        fs.saveFileSync(this.data.tempAudioPath, newPath);
+        newEntry.voicePath = newPath;
+        newEntry.voiceDuration = this.data.audioDuration;
+      } catch(e) {
+        console.error('Failed to save voice', e);
+      }
+    }
     
     diaryList.unshift(newEntry);
     wx.setStorageSync('diary_list', diaryList);
@@ -222,7 +360,9 @@ Page({
       locationName: '',
       photos: [],
       selectedMoodIndex: 1,
-      selectedWeatherIndex: 0
+      selectedWeatherIndex: 0,
+      tempAudioPath: '',
+      audioDuration: 0
     });
     
     app.playClick();

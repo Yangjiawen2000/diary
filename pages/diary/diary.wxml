@@ -80,6 +80,24 @@
       maxlength="500"
     ></textarea>
 
+    <!-- Voice Recording Section -->
+    <view class="voice-section">
+      <view class="record-btn-container">
+        <view class="record-btn {{isRecording ? 'recording' : ''}}" bindtap="toggleRecording">
+          <text class="mic-icon">{{isRecording ? '⏹️' : '🎙️'}}</text>
+        </view>
+        <text class="record-hint">{{isRecording ? '正在记录你的声音...' : '点我录语音'}}</text>
+      </view>
+
+      <view class="audio-preview" wx:if="{{tempAudioPath}}">
+        <view class="audio-player" bindtap="playTempAudio">
+          <text class="play-icon">{{isAudioPlaying ? '⏸️' : '▶️'}}</text>
+          <text class="audio-duration">{{audioDuration}}s</text>
+        </view>
+        <view class="audio-delete" bindtap="clearTempAudio">×</view>
+      </view>
+    </view>
+
     <!-- Photo Attachments -->
     <view class="photos-container">
       <block wx:for="{{photos}}" wx:key="index">

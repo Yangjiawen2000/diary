@@ -52,6 +52,9 @@
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于自动添加日记定位"
+    },
+    "scope.record": {
+      "desc": "我们需要麦克风权限来记录你的语音日记"
     }
   },
   "style": "v2",

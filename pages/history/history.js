@@ -6,11 +6,48 @@ Page({
     currMonth: 0,
     calendarDays: [],
     diaryDatesMap: {},
-    selectedDateStr: ''
+    selectedDateStr: '',
+    playingAudioId: null
   },
   
+  onLoad() {
+    this.initAudioPlayer();
+  },
+
   onShow() {
     this.loadHistory();
+  },
+
+  onUnload() {
+    if (this.innerAudioContext) {
+      this.innerAudioContext.destroy();
+    }
+  },
+
+  initAudioPlayer() {
+    this.innerAudioContext = wx.createInnerAudioContext();
+    this.innerAudioContext.onPlay(() => {});
+    this.innerAudioContext.onPause(() => this.setData({ playingAudioId: null }));
+    this.innerAudioContext.onStop(() => this.setData({ playingAudioId: null }));
+    this.innerAudioContext.onEnded(() => this.setData({ playingAudioId: null }));
+    this.innerAudioContext.onError((res) => {
+      console.error('audio error', res);
+      this.setData({ playingAudioId: null });
+    });
+  },
+
+  playHistoryAudio(e) {
+    const { path, id } = e.currentTarget.dataset;
+    
+    if (this.data.playingAudioId === id) {
+      this.innerAudioContext.pause();
+    } else {
+      getApp().playClick();
+      this.innerAudioContext.stop();
+      this.innerAudioContext.src = path;
+      this.innerAudioContext.play();
+      this.setData({ playingAudioId: id });
+    }
   },
   
   loadHistory() {
